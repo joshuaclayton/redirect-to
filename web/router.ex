@@ -16,7 +16,9 @@ defmodule RedirectTo.Router do
   scope "/", RedirectTo do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", LinkController, :index
+
+    resources "/links", LinkController, only: [:index, :create]
   end
 
   # Other scopes may use custom stacks.
