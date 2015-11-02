@@ -48,6 +48,7 @@ defmodule RedirectTo.Web do
       use Phoenix.HTML
 
       import RedirectTo.Router.Helpers
+      import RedirectTo.BaseView
     end
   end
 

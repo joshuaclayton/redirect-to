@@ -1,1 +1,1 @@
-<header data-role="primary">Welcome to Phoenix</header>
+<header data-role="primary"><%= t(@conn, "application.title") %></header>

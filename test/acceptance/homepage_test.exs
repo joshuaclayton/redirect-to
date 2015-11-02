@@ -10,7 +10,7 @@ defmodule RedirectTo.HomepageTest do
 
   test "GET /" do
     HomepagePage.visit
-    assert HomepagePage.header_text == "Welcome to Phoenix"
+    assert HomepagePage.header_is_present?
   end
 end
 
@@ -21,7 +21,11 @@ defmodule RedirectTo.HomepagePage do
     navigate_to "/"
   end
 
-  def header_text do
+  def header_is_present? do
+    header_text == I18n.t!("en", "application.title")
+  end
+
+  defp header_text do
     find_element(:css, "header[data-role='primary']")
     |> visible_text
   end

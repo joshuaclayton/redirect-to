@@ -42,6 +42,7 @@ defmodule RedirectTo.Mixfile do
       {:phoenix_html, "~> 2.1"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:cowboy, "~> 1.0"},
+      {:linguist, "~> 0.1.5"},
       {:hound, "~> 0.7", only: :test}
     ]
   end
