@@ -9,6 +9,7 @@
   <%= Enum.map @links, fn(lnk) -> %>
     <li>
       <%= link lnk.long_url, to: redirect_path(@conn, :show, lnk.slug) %>
+      <span class="view-count"><%= visits_count lnk %></span>
     </li>
   <% end %>
 </ul>

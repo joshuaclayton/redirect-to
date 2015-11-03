@@ -5,7 +5,7 @@ defmodule RedirectTo.LinkController do
 
   def index(conn, _params) do
     link = Link.changeset(%Link{})
-    links = Repo.all(Link)
+    links = Repo.all(Link) |> Repo.preload([:link_visits])
     render conn, "index.html", link: link, links: links
   end
 
@@ -19,7 +19,6 @@ defmodule RedirectTo.LinkController do
         put_flash(conn, :info, I18n.t!("en", "link.created", url: link.long_url))
         |> redirect to: link_path(conn, :index)
       {:error, _changeset} ->
-
     end
   end
 end

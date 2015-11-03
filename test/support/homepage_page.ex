@@ -15,8 +15,7 @@ defmodule RedirectTo.HomepagePage do
   end
 
   def shortened_url_is_present?(url) do
-    long_urls
-    |> Enum.member? url
+    link_on_page(url)
   end
 
   def follow_shortened_link_to(url) do
@@ -28,14 +27,23 @@ defmodule RedirectTo.HomepagePage do
     flash_for_type(type) == message
   end
 
+  def view_count_for(url) do
+    link_on_page(url)
+    |> find_within_element(:class, "view-count")
+    |> visible_text
+    |> String.to_integer
+  end
+
   defp header_text do
     find_element(:css, "header[data-role='primary']")
     |> visible_text
   end
 
-  defp long_urls do
+  defp link_on_page(url) do
     find_all_elements(:css, ".links li")
-    |> Enum.map &visible_text/1
+    |> Enum.find fn(element) ->
+      (element |> visible_text) =~ ~r/#{url}/
+    end
   end
 
   defp flash_for_type(type) do
