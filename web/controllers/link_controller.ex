@@ -22,10 +22,4 @@ defmodule RedirectTo.LinkController do
 
     end
   end
-
-  def show(conn, %{"id" => slug}) do
-    link = Repo.get_by!(Link, slug: slug)
-
-    redirect conn, external: link.long_url
-  end
 end
