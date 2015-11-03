@@ -18,7 +18,7 @@ defmodule RedirectTo.Router do
 
     get "/", LinkController, :index
 
-    resources "/links", LinkController, only: [:index, :create]
+    resources "/links", LinkController, only: [:index, :show, :create]
   end
 
   # Other scopes may use custom stacks.

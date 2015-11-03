@@ -19,6 +19,11 @@ defmodule RedirectTo.HomepagePage do
     |> Enum.member? url
   end
 
+  def follow_shortened_link_to(url) do
+    find_element(:css, "li a:contains('#{url}')")
+    |> click
+  end
+
   def flash_is_present?(type, message) do
     flash_for_type(type) == message
   end
@@ -29,7 +34,7 @@ defmodule RedirectTo.HomepagePage do
   end
 
   defp long_urls do
-    find_all_elements(:css, ".links li .long-url")
+    find_all_elements(:css, ".links li")
     |> Enum.map &visible_text/1
   end
 

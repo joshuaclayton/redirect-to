@@ -6,9 +6,9 @@
 <% end %>
 
 <ul class="links">
-  <%= Enum.map @links, fn(link) -> %>
+  <%= Enum.map @links, fn(lnk) -> %>
     <li>
-      <span class="long-url"><%= link.long_url %></span>
+      <%= link lnk.long_url, to: link_path(@conn, :show, lnk.slug) %>
     </li>
   <% end %>
 </ul>
