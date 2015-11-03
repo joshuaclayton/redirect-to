@@ -18,5 +18,6 @@ defmodule RedirectTo.CreateShortenedUrlTest do
     assert shortened_url_is_present?("http://www.google.com")
 
     follow_shortened_link_to "http://www.example.com"
+    assert current_url == "http://www.example.com/"
   end
 end

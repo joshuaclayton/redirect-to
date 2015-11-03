@@ -20,7 +20,7 @@ defmodule RedirectTo.HomepagePage do
   end
 
   def follow_shortened_link_to(url) do
-    find_element(:css, "li a:contains('#{url}')")
+    find_element(:link_text, url)
     |> click
   end
 
