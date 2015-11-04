@@ -17,5 +17,6 @@ defmodule RedirectTo.Link do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> validate_length(:long_url, min: 10)
   end
 end

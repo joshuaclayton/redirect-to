@@ -1,5 +1,6 @@
 defmodule RedirectTo.HomepagePage do
   use Hound.Helpers
+  import Hound.Matchers.Text, only: [visible_on_page?: 1]
 
   def visit_homepage do
     navigate_to "/"
@@ -34,13 +35,21 @@ defmodule RedirectTo.HomepagePage do
     |> String.to_integer
   end
 
+  def no_links_exist? do
+    all_links |> length == 0
+  end
+
+  def error_message_shown(message) do
+    visible_on_page?(message)
+  end
+
   defp header_text do
     find_element(:css, "header[data-role='primary']")
     |> visible_text
   end
 
   defp link_on_page(url) do
-    find_all_elements(:css, ".links li")
+    all_links
     |> Enum.find fn(element) ->
       (element |> visible_text) =~ ~r/#{url}/
     end
@@ -49,5 +58,9 @@ defmodule RedirectTo.HomepagePage do
   defp flash_for_type(type) do
     find_element(:css, ".alert-#{type}")
     |> visible_text
+  end
+
+  defp all_links do
+    find_all_elements(:css, ".links li")
   end
 end

@@ -1,24 +1,25 @@
 defmodule RedirectTo.LinkController do
   use RedirectTo.Web, :controller
   alias RedirectTo.Link
-  alias RedirectTo.TokenGenerator
+  alias RedirectTo.LinkCreator
 
   def index(conn, _params) do
     link = Link.changeset(%Link{})
-    links = Repo.all(Link) |> Repo.preload([:link_visits])
-    render conn, "index.html", link: link, links: links
+    render conn, "index.html", link: link, links: load_links
   end
 
   def create(conn, %{"link" => link_params}) do
-    link = Link.changeset(%Link{}, link_params)
-
-    case Repo.insert(link) do
+    case LinkCreator.create(link_params) do
       {:ok, link} ->
-        Repo.update(%{link | slug: TokenGenerator.generate(link.id)})
-
         put_flash(conn, :info, I18n.t!("en", "link.created", url: link.long_url))
         |> redirect to: link_path(conn, :index)
-      {:error, _changeset} ->
+      {:error, changeset} ->
+        render conn, "index.html", link: changeset, links: load_links
     end
+  end
+
+  defp load_links do
+    Repo.all(Link)
+    |> Repo.preload([:link_visits])
   end
 end

@@ -7,7 +7,9 @@ defmodule RedirectTo.CreateShortenedUrlTest do
     shortened_url_is_present?: 1,
     flash_is_present?: 2,
     follow_shortened_link_to: 1,
-    view_count_for: 1
+    view_count_for: 1,
+    no_links_exist?: 0,
+    error_message_shown: 1
   ]
 
   use Hound.Helpers
@@ -31,5 +33,14 @@ defmodule RedirectTo.CreateShortenedUrlTest do
     visit_homepage
 
     assert view_count_for("http://www.example.com") == 1
+  end
+
+  test "create an invalid URL" do
+    visit_homepage
+
+    shorten_url ""
+
+    assert no_links_exist?
+    assert error_message_shown("should be")
   end
 end
