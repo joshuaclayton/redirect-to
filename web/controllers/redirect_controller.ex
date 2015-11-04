@@ -1,10 +1,10 @@
 defmodule RedirectTo.RedirectController do
   use RedirectTo.Web, :controller
-  alias RedirectTo.Link
   alias RedirectTo.LinkVisitCreator
+  alias RedirectTo.Queries
 
   def show(conn, %{"slug" => slug}) do
-    link = Repo.get_by!(Link, slug: slug)
+    link = Queries.Link.by_slug(slug) |> Repo.one
 
     spawn(LinkVisitCreator, :create, [conn, link])
 
