@@ -4,7 +4,7 @@ defmodule RedirectTo.LinkController do
   alias RedirectTo.LinkCreator
 
   def index(conn, _params) do
-    link = Link.changeset(%Link{})
+    link = Link.changeset
     render conn, "index.html", link: link, links: load_links
   end
 
