@@ -8,7 +8,6 @@ defmodule RedirectTo.CreateShortenedUrlTest do
     flash_is_present?: 2,
     follow_shortened_link_to: 1,
     view_count_for: 1,
-    no_links_exist?: 0,
     error_message_shown: 1
   ]
 
@@ -38,9 +37,9 @@ defmodule RedirectTo.CreateShortenedUrlTest do
   test "create an invalid URL" do
     visit_homepage
 
-    shorten_url ""
+    shorten_url "bad"
 
-    assert no_links_exist?
+    refute shortened_url_is_present?("bad")
     assert error_message_shown("should be")
   end
 end

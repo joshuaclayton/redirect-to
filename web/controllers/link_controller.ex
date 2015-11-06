@@ -3,6 +3,8 @@ defmodule RedirectTo.LinkController do
   alias RedirectTo.Link
   alias RedirectTo.LinkCreator
 
+  plug :scrub_params, "link" when action in [:create]
+
   def index(conn, _params) do
     link = Link.changeset
     render conn, "index.html", link: link, links: load_links

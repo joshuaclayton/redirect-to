@@ -35,10 +35,6 @@ defmodule RedirectTo.HomepagePage do
     |> String.to_integer
   end
 
-  def no_links_exist? do
-    all_links |> length == 0
-  end
-
   def error_message_shown(message) do
     visible_on_page?(message)
   end

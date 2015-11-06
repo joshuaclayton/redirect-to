@@ -11,7 +11,7 @@ defmodule RedirectTo.UrlValidator do
     end
   end
 
-  defp parse_url(nil), do: {:error, URI.parse("")}
+  defp parse_url(nil), do: {:ok, URI.parse("")}
   defp parse_url(value) do
     uri = URI.parse(value)
     case uri do
