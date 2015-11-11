@@ -15,6 +15,7 @@ defmodule RedirectTo.UserAgent do
 
   def device_name(user_agent) do
     case UaInspector.parse(user_agent) do
+      %UaInspector.Result{device: %UaInspector.Result.Device{model: :unknown}} -> "Unknown"
       %UaInspector.Result{device: %UaInspector.Result.Device{model: name}} -> name
       _ -> "Unknown"
     end
