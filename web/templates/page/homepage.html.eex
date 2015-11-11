@@ -1,0 +1,1 @@
+<%= render RedirectTo.LinkView, "_form.html", conn: @conn, link: @link %>

@@ -1,23 +1,2 @@
-<header data-role="primary"><%= t(@conn, "application.title") %></header>
-
-<%= form_for @link, link_path(@conn, :create), fn(f) -> %>
-  <%= if f.errors do %>
-    <ul class="errors">
-      <%= Enum.map f.errors, fn({attribute, message}) -> %>
-        <li><%= humanize(attribute) %> <%= message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-
-  <%= text_input f, :long_url, placeholder: t(@conn, "forms.link.long_url.placeholder") %>
-  <%= submit t(@conn, "forms.link.submit.create") %>
-<% end %>
-
-<ul class="links">
-  <%= Enum.map @links, fn(lnk) -> %>
-    <li>
-      <%= link lnk.long_url, to: redirect_path(@conn, :show, lnk.slug) %>
-      <span class="view-count"><%= visits_count lnk %></span>
-    </li>
-  <% end %>
-</ul>
+<%= render "_form.html", conn: @conn, link: @new_link %>
+<%= render "_list.html", conn: @conn, links: @links, active: nil %>

@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t(@conn, "link_visits.occurred_on") %></th>
+      <th><%= t(@conn, "link_visits.ip") %></th>
+      <th><%= t(@conn, "link_visits.user_agent") %></th>
+      <th><%= t(@conn, "link_visits.referer") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= Enum.map @link_visits, fn(link_visit) -> %>
+      <tr>
+        <td><%= date_format link_visit.inserted_at %></td>
+        <td><%= link_visit.ip %></td>
+        <td><%= user_agent_info(link_visit) %></td>
+        <td><%= referer_host link_visit %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

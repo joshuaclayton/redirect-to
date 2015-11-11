@@ -6,8 +6,8 @@ defmodule RedirectTo.LinkController do
   plug :scrub_params, "link" when action in [:create]
 
   def index(conn, _params) do
-    link = Link.changeset
-    render conn, "index.html", link: link, links: load_links
+    new_link = Link.changeset
+    render conn, "index.html", new_link: new_link, links: load_links
   end
 
   def create(conn, %{"link" => link_params}) do
@@ -16,8 +16,15 @@ defmodule RedirectTo.LinkController do
         put_flash(conn, :info, I18n.t!("en", "link.created", url: link.long_url))
         |> redirect to: link_path(conn, :index)
       {:error, changeset} ->
-        render conn, "index.html", link: changeset, links: load_links
+        render conn, "index.html", links: load_links, new_link: changeset
     end
+  end
+
+  def show(conn, %{"id" => id}) do
+    link = Repo.get!(Link, id) |> Repo.preload([:link_visits])
+
+    new_link = Link.changeset
+    render conn, "show.html", new_link: new_link, link: link, links: load_links
   end
 
   defp load_links do

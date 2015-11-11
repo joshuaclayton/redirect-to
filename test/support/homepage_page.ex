@@ -7,7 +7,7 @@ defmodule RedirectTo.HomepagePage do
   end
 
   def header_is_present? do
-    header_text == I18n.t!("en", "application.title")
+    header_text =~ ~r(#{I18n.t!("en", "application.title")})i
   end
 
   def shorten_url(url) do
@@ -37,6 +37,16 @@ defmodule RedirectTo.HomepagePage do
 
   def error_message_shown(message) do
     visible_on_page?(message)
+  end
+
+  def visit_links do
+    navigate_to "/links"
+  end
+
+  def view_link_details(url) do
+    link_on_page(url)
+    |> find_within_element(:link_text, "Details")
+    |> click
   end
 
   defp header_text do

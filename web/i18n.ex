@@ -3,10 +3,17 @@ defmodule I18n do
 
   locale "en", [
     application: [
-      title: "302.to"
+      title: "Redirect To"
     ],
     link: [
-      created: "Successfully shortened '%{url}'"
+      created: "Successfully shortened '%{url}'",
+      details: "Details"
+    ],
+    link_visits: [
+      ip: "IP Address",
+      user_agent: "User Agent",
+      referer: "Referer",
+      occurred_on: "Occurred"
     ],
     forms: [
       link: [

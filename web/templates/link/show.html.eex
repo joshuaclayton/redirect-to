@@ -1,0 +1,3 @@
+<%= render "_form.html", conn: @conn, link: @new_link %>
+<%= render "_list.html", conn: @conn, links: @links, active: @link %>
+<%= render "_details.html", conn: @conn, link: @link %>

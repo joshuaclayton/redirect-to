@@ -1,1 +1,10 @@
 @import "normalize";
+
+.site-header {
+  span {
+    display: inline-block;
+    text-transform: uppercase;
+  }
+
+  border-bottom: 1px solid #ddd;
+}

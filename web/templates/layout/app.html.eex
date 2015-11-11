@@ -14,7 +14,13 @@
   <body>
     <%= render "_flash.html", conn: @conn %>
 
-    <%= @inner %>
+    <div class="container">
+      <header class="site-header" data-role="primary">
+        <h1><%= raw split_to_spans(t(@conn, "application.title")) %></h1>
+      </header>
+
+      <%= @inner %>
+    </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>

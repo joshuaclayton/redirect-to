@@ -29,3 +29,5 @@ config :phoenix, :generators,
   binary_id: false
 
 config :hound, driver: "phantomjs"
+config :ua_inspector,
+  database_path: Path.join(Mix.Utils.mix_home, "ua_inspector")

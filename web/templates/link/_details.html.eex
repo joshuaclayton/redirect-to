@@ -1,0 +1,4 @@
+<h2><%= @link.long_url %></h2>
+<code><%= redirect_url(@conn, :show, @link.slug) %></code>
+
+<%= render RedirectTo.LinkVisitView, "_table.html", conn: @conn, link_visits: @link.link_visits %>

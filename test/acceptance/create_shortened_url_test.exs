@@ -1,16 +1,7 @@
 defmodule RedirectTo.CreateShortenedUrlTest do
   use RedirectTo.ConnCase
 
-  import RedirectTo.HomepagePage, only: [
-    visit_homepage: 0,
-    shorten_url: 1,
-    shortened_url_is_present?: 1,
-    flash_is_present?: 2,
-    follow_shortened_link_to: 1,
-    view_count_for: 1,
-    error_message_shown: 1
-  ]
-
+  import RedirectTo.HomepagePage
   use Hound.Helpers
   hound_session
 
@@ -29,7 +20,8 @@ defmodule RedirectTo.CreateShortenedUrlTest do
     follow_shortened_link_to "http://www.example.com"
     assert current_url == "http://www.example.com/"
 
-    visit_homepage
+    visit_links
+    view_link_details "http://www.example.com"
 
     assert view_count_for("http://www.example.com") == 1
   end
