@@ -30,4 +30,4 @@ config :phoenix, :generators,
 
 config :hound, driver: "phantomjs"
 config :ua_inspector,
-  database_path: Path.join(Mix.Utils.mix_home, "ua_inspector")
+  database_path: Path.join(Path.expand("priv/repo"), "ua_inspector")
