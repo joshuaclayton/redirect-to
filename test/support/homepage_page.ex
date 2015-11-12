@@ -20,8 +20,11 @@ defmodule RedirectTo.HomepagePage do
   end
 
   def follow_shortened_link_to(url) do
-    find_element(:link_text, url)
-    |> click
+    view_link_details(url)
+    shortened_url = find_element(:css, ".link-detail code")
+                    |> visible_text
+
+    navigate_to shortened_url
   end
 
   def flash_is_present?(type, message) do
@@ -45,7 +48,7 @@ defmodule RedirectTo.HomepagePage do
 
   def view_link_details(url) do
     link_on_page(url)
-    |> find_within_element(:link_text, "Details")
+    |> find_within_element(:link_text, url)
     |> click
   end
 

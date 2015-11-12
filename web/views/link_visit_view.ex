@@ -16,7 +16,6 @@ defmodule RedirectTo.LinkVisitView do
 
   def referer_host(link_visit) do
     link_visit.referer
-    |> URI.parse
     |> retrieve_host
   end
 
@@ -24,7 +23,11 @@ defmodule RedirectTo.LinkVisitView do
     [browser_name(user_agent), os_name(user_agent), device_name(user_agent)]
   end
 
-  defp retrieve_host(%URI{host: host}) do
-    host
+  defp retrieve_host(nil), do: ""
+  defp retrieve_host(referer) do
+    case URI.parse(referer) do
+      %URI{host: nil} -> ""
+      %URI{host: host} -> host
+    end
   end
 end

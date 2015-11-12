@@ -1,9 +1,9 @@
 <ul class="links">
   <%= Enum.map @links, fn(lnk) -> %>
     <li <%= flag_active(lnk, @active) %>>
-      <%= link lnk.long_url, to: redirect_path(@conn, :show, lnk.slug) %>
+      <%= link lnk.long_url, to: link_path(@conn, :show, lnk), class: "view-detail" %>
       <span class="view-count"><%= visits_count lnk %></span>
-      <%= link t(@conn, "link.details"), to: link_path(@conn, :show, lnk) %>
+      <%= link t(@conn, "link.view"), to: lnk.long_url, class: "external" %>
     </li>
   <% end %>
 </ul>

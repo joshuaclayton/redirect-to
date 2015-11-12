@@ -7,7 +7,7 @@ defmodule I18n do
     ],
     link: [
       created: "Successfully shortened '%{url}'",
-      details: "Details"
+      view: "View"
     ],
     link_visits: [
       ip: "IP Address",

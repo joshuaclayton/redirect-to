@@ -1,3 +1,13 @@
-<%= render "_form.html", conn: @conn, link: @new_link %>
-<%= render "_list.html", conn: @conn, links: @links, active: @link %>
-<%= render "_details.html", conn: @conn, link: @link %>
+<div class="creation-form">
+  <%= render "_form.html", conn: @conn, link: @new_link %>
+</div>
+
+<div class="wrapper">
+  <nav class="links">
+    <%= render "_list.html", conn: @conn, links: @links, active: @link %>
+  </nav>
+
+  <main class="link-detail">
+    <%= render "_details.html", conn: @conn, link: @link %>
+  </main>
+</div>

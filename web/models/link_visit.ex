@@ -11,8 +11,8 @@ defmodule RedirectTo.LinkVisit do
     timestamps
   end
 
-  @required_fields ~w(referer user_agent link_id)
-  @optional_fields ~w(ip)
+  @required_fields ~w(user_agent link_id)
+  @optional_fields ~w(ip referer)
 
   def changeset(model, params \\ :empty) do
     model
