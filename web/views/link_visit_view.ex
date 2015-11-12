@@ -19,10 +19,6 @@ defmodule RedirectTo.LinkVisitView do
     |> retrieve_host
   end
 
-  defp user_agent_breakdown(user_agent) do
-    [browser_name(user_agent), os_name(user_agent), device_name(user_agent)]
-  end
-
   defp retrieve_host(nil), do: ""
   defp retrieve_host(referer) do
     case URI.parse(referer) do
