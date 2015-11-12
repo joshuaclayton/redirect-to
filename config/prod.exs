@@ -14,7 +14,7 @@ use Mix.Config
 
 config :redirect_to, RedirectTo.Endpoint,
   url: [host: System.get_env("HOST")],
-  http: [compress: true],
+  http: [port: System.get_env("PORT"), compress: true],
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
