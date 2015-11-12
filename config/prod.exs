@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 
 config :redirect_to, RedirectTo.Endpoint,
-  url: [host: System.get_env("HOST")],
+  url: [host: System.get_env("HOST"), port: 80],
   http: [port: System.get_env("PORT"), compress: true],
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
