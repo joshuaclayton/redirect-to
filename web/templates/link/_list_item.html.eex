@@ -1,0 +1,7 @@
+<%= link @link.long_url, to: link_path(@conn, :show, @link), class: "view-detail" %>
+
+<span class="view-count">
+  <span class="value"><%= @visit_count %></span>
+</span>
+
+<%= link t(@conn, "link.view"), to: @link.long_url, class: "external" %>

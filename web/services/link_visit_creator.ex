@@ -1,6 +1,7 @@
 defmodule RedirectTo.LinkVisitCreator do
   alias RedirectTo.Repo
   alias RedirectTo.LinkVisit
+  alias RedirectTo.Link
   import Ecto.Query, only: [from: 1, from: 2]
   import RedirectTo.UserAgent, only: [user_agent_to_map: 1]
 
@@ -33,9 +34,23 @@ defmodule RedirectTo.LinkVisitCreator do
       "update:link",
       %{
         link_id: link_visit.link_id,
-        visit_count: link_visit_count(link_visit)
+        html: link_visit_html(link_visit)
       }
     )
+  end
+
+  defp link_visit_html(link_visit) do
+    Phoenix.View.render_to_string(
+      RedirectTo.LinkView,
+      "_list_item.html",
+      conn: RedirectTo.Endpoint,
+      link: link_from_link_visit(link_visit),
+      visit_count: link_visit_count(link_visit),
+    )
+  end
+
+  defp link_from_link_visit(link_visit) do
+    Repo.get!(Link, link_visit.link_id)
   end
 
   defp link_visit_count(link_visit) do

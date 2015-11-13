@@ -56,10 +56,10 @@ channel.join()
 
 channel.on("update:link", payload => {
   const linkId = payload.link_id,
-        count = payload.visit_count;
-  const selector = `.links [data-id='${linkId}'] .view-count .value`;
+        markup = payload.html;
+  const selector = `.links [data-id='${linkId}']`;
 
-  $(selector).text(count);
+  $(selector).html(markup);
 });
 
 export default socket;
