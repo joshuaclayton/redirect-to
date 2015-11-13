@@ -3,6 +3,8 @@ defmodule RedirectTo.UserSocket do
 
   ## Channels
   # channel "rooms:*", RedirectTo.RoomChannel
+  channel "links", RedirectTo.Channels.LinksChannel
+
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
