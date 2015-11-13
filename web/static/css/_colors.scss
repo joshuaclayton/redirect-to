@@ -1,0 +1,64 @@
+$dark-grey: #333745;
+$bright-red: #EA2E49;
+$dark-grey-border-light: lighten($dark-grey, 15%);
+$dark-grey-border-dark: darken($dark-grey, 3%);
+$sea-foam-green: #DAEDE2;
+$yellow: #F6F792;
+
+body {
+  background: lighten($dark-grey, 70%);
+  color: $dark-grey;
+}
+
+h1 {
+  color: $bright-red;
+}
+
+.creation-form {
+  background: $dark-grey;
+
+  .errors {
+    color: $bright-red;
+  }
+}
+
+.shortened-url {
+  background: lighten($dark-grey, 80%);
+  border-top: 1px solid lighten($dark-grey, 62%);
+}
+
+.links {
+  background: $dark-grey;
+
+  .view-count {
+    .value {
+      color: lighten($dark-grey, 45%);
+      background: lighten($dark-grey, 15%);
+      border-top: 1px solid $dark-grey-border-dark;
+      border-bottom: 1px solid lighten($dark-grey-border-light, 10%);
+    }
+  }
+
+  li {
+    border-top: 1px solid $dark-grey;
+    border-bottom: 1px solid $dark-grey;
+
+    &.active {
+      background: lighten($dark-grey, 5%);
+      border-top: 1px solid $dark-grey-border-dark;
+      border-bottom: 1px solid $dark-grey-border-light;
+    }
+  }
+
+  a {
+    color: lighten(#333745, 60%);
+  }
+}
+
+.link-visits {
+  background: lighten($dark-grey, 80%);
+
+  td, th {
+    border: 1px solid lighten($dark-grey, 62%);
+  }
+}

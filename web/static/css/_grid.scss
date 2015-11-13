@@ -1,0 +1,21 @@
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  display: flex;
+  flex: 1;
+}
+
+.links {
+  flex: 0 0 25%;
+  overflow-y: auto;
+}
+
+.link-detail {
+  flex: 1;
+  overflow-y: auto;
+  table { width: 100%; }
+}

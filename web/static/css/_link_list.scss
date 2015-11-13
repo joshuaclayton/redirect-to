@@ -1,0 +1,53 @@
+.overflow-with-ellipsis {
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.links {
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      list-style-type: none;
+      padding: 1vh 1vw;
+
+      display: flex;
+      align-items: baseline;
+
+      .view-count, .view-detail, .external { flex: 1; }
+      .view-count, .view-detail {
+        @extend .overflow-with-ellipsis;
+      }
+
+      .view-count {
+        flex: 0 0 4em;
+        margin-right: .5em;
+        text-align: center;
+        padding: .3em 0;
+
+        .value {
+          padding: .25em .5em;
+          border-radius: 5px;
+        }
+      }
+
+      .external { flex: 0 0 3em; }
+      .external { text-align: right; }
+
+      .view-count { order: 1; }
+      .view-detail { order: 2; }
+      .external { order: 3; }
+
+      &:nth-of-type(1) {
+        padding-top: 2vh;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}
