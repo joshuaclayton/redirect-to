@@ -5,6 +5,9 @@ defmodule I18n do
     application: [
       title: "302 To"
     ],
+    errors: [
+      header: "There were errors"
+    ],
     link: [
       created: "Successfully shortened '%{url}'",
       view: "View",

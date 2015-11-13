@@ -1,10 +1,13 @@
 <%= form_for @link, link_path(@conn, :create), fn(f) -> %>
-  <%= if f.errors do %>
-    <ul class="errors">
-      <%= Enum.map f.errors, fn({attribute, message}) -> %>
-        <li><%= humanize(attribute) %> <%= message %></li>
-      <% end %>
-    </ul>
+  <%= if f.errors |> length > 0 do %>
+    <section class="errors">
+      <h2><%= t(@conn, "errors.header") %></h2>
+      <ul>
+        <%= Enum.map f.errors, fn({attribute, message}) -> %>
+          <li><%= humanize(attribute) %> <%= message %></li>
+        <% end %>
+      </ul>
+    </section>
   <% end %>
 
   <%= text_input f, :long_url, placeholder: t(@conn, "forms.link.long_url.placeholder") %>
