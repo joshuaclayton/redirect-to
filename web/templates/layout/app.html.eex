@@ -23,5 +23,8 @@
     </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
+    <%= render_existing view_module(@conn), "scripts.html", assigns %>
   </body>
 </html>

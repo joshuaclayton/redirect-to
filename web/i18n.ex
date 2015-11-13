@@ -3,11 +3,12 @@ defmodule I18n do
 
   locale "en", [
     application: [
-      title: "Redirect To"
+      title: "302 To"
     ],
     link: [
       created: "Successfully shortened '%{url}'",
-      view: "View"
+      view: "View",
+      shortened_url_description: "Here's your shortened URL; click on the link and press Command+C to copy it to your clipboard."
     ],
     link_visits: [
       ip: "IP Address",

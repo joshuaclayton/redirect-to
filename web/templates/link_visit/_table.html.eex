@@ -1,4 +1,4 @@
-<table>
+<table class="link-visits">
   <thead>
     <tr>
       <th><%= t(@conn, "link_visits.occurred_on") %></th>
