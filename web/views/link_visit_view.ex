@@ -1,6 +1,5 @@
 defmodule RedirectTo.LinkVisitView do
   use RedirectTo.Web, :view
-  import RedirectTo.UserAgent
 
   def date_format(value) do
     {:ok, date} = Ecto.DateTime.dump(value)
@@ -9,8 +8,7 @@ defmodule RedirectTo.LinkVisitView do
   end
 
   def user_agent_info(link_visit) do
-    link_visit.user_agent
-    |> user_agent_breakdown
+    [link_visit.browser_name, link_visit.os_name, link_visit.device_name]
     |> Enum.join "/"
   end
 

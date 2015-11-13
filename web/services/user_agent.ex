@@ -1,7 +1,12 @@
 defmodule RedirectTo.UserAgent do
-  def user_agent_breakdown(user_agent) do
-    parsed_result = UaInspector.parse(user_agent)
-    [browser_name(parsed_result), os_name(parsed_result), device_name(parsed_result)]
+  def user_agent_to_map(user_agent) do
+    parsed_user_agent = UaInspector.parse(user_agent)
+
+    %{
+      browser_name: browser_name(parsed_user_agent),
+      device_name: device_name(parsed_user_agent),
+      os_name: os_name(parsed_user_agent)
+    }
   end
 
   def browser_name(parsed_result) do

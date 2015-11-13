@@ -5,13 +5,16 @@ defmodule RedirectTo.LinkVisit do
     field :ip, :string
     field :referer, :string
     field :user_agent, :string
+    field :browser_name, :string
+    field :os_name, :string
+    field :device_name, :string
 
     belongs_to :link, RedirectTo.Link
 
     timestamps
   end
 
-  @required_fields ~w(user_agent link_id)
+  @required_fields ~w(user_agent link_id browser_name os_name device_name)
   @optional_fields ~w(ip referer)
 
   def changeset(model, params \\ :empty) do
