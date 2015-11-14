@@ -7,12 +7,10 @@ defmodule RedirectTo.LinkVisitCreator do
 
 
   def create(conn, link) do
-    params = %{link_id: link.id}
-             |> Map.merge request_info(conn)
-             |> with_user_agent_attributes
-
-    LinkVisit.changeset(%LinkVisit{}, params)
-    |> Repo.insert!
+    %{link_id: link.id}
+    |> Map.merge(request_info(conn))
+    |> with_user_agent_attributes
+    |> persist_link_visit
     |> broadcast_link_visit_creation
   end
 
@@ -26,6 +24,11 @@ defmodule RedirectTo.LinkVisitCreator do
 
   defp with_user_agent_attributes(map) do
     Map.merge map, user_agent_to_map(map.user_agent)
+  end
+
+  defp persist_link_visit(attributes) do
+    LinkVisit.changeset(%LinkVisit{}, attributes)
+    |> Repo.insert!
   end
 
   defp broadcast_link_visit_creation(link_visit) do
