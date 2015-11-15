@@ -3,11 +3,10 @@ defmodule RedirectTo.Queries.LinksList do
   alias RedirectTo.Link
 
   def with_visits_count do
-    from(l in Link,
-        left_join: lv in assoc(l, :link_visits),
-        select: {l, count(lv.id)},
-        group_by: l.id
-        )
+    from l in Link,
+      left_join: lv in assoc(l, :link_visits),
+      group_by: l.id,
+      select: {l, count(lv.id)}
   end
 end
 
