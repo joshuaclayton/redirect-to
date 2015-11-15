@@ -1,7 +1,7 @@
 <ul class="links">
-  <%= Enum.map @links, fn(lnk) -> %>
+  <%= Enum.map @links, fn({lnk, link_visit_count}) -> %>
     <li <%= flag_active(lnk, @active) %> data-id="<%= lnk.id %>">
-      <%= render "_list_item.html", conn: @conn, link: lnk, visit_count: visits_count(lnk) %>
+      <%= render "_list_item.html", conn: @conn, link: lnk, visit_count: link_visit_count %>
     </li>
   <% end %>
 </ul>

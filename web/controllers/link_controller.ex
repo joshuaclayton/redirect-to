@@ -28,7 +28,7 @@ defmodule RedirectTo.LinkController do
   end
 
   defp load_links do
-    Repo.all(Link)
-    |> Repo.preload([:link_visits])
+    RedirectTo.Queries.LinksList.with_visits_count
+    |> Repo.all
   end
 end
