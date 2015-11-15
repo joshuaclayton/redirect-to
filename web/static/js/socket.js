@@ -56,10 +56,13 @@ channel.join()
 
 channel.on("update:link", payload => {
   const linkId = payload.link_id,
-        markup = payload.html;
-  const selector = `.links [data-id='${linkId}']`;
+        linkListItemHtml = payload.link_list_item_html,
+        linkListItemSelector = `.links [data-id='${linkId}']`,
+        linkVisitTableRowHtml = payload.link_visit_table_row_html,
+        linkVisitTableRowSelector = `.link-visits[data-id='${linkId}'] tbody`;
 
-  $(selector).html(markup);
+  $(linkListItemSelector).html(linkListItemHtml);
+  $(linkVisitTableRowSelector).prepend($(linkVisitTableRowHtml).addClass("created"));
 });
 
 export default socket;

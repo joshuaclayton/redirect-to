@@ -6,7 +6,8 @@ defmodule RedirectTo.Queries.LinksList do
     from l in Link,
       left_join: lv in assoc(l, :link_visits),
       group_by: l.id,
-      select: {l, count(lv.id)}
+      select: {l, count(lv.id)},
+      order_by: l.id
   end
 end
 

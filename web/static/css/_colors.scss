@@ -5,6 +5,15 @@ $dark-grey-border-dark: darken($dark-grey, 3%);
 $sea-foam-green: #DAEDE2;
 $yellow: #F6F792;
 
+@keyframes flash-highlight {
+  0% {
+    background: lighten(yellow, 30%);
+  }
+  100% {
+    background: none;
+  }
+}
+
 body {
   background: lighten($dark-grey, 70%);
   color: $dark-grey;

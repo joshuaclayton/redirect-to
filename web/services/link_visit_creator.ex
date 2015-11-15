@@ -1,7 +1,7 @@
 defmodule RedirectTo.LinkVisitCreator do
   alias RedirectTo.Repo
   alias RedirectTo.LinkVisit
-  alias RedirectTo.Link
+  alias RedirectTo.LinkVisitCreationBroadcaster
   import Ecto.Query, only: [from: 1, from: 2]
   import RedirectTo.UserAgent, only: [user_agent_to_map: 1]
 
@@ -11,7 +11,7 @@ defmodule RedirectTo.LinkVisitCreator do
     |> Map.merge(request_info(conn))
     |> with_user_agent_attributes
     |> persist_link_visit
-    |> broadcast_link_visit_creation
+    |> LinkVisitCreationBroadcaster.broadcast
   end
 
   defp request_info(conn) do
@@ -29,38 +29,5 @@ defmodule RedirectTo.LinkVisitCreator do
   defp persist_link_visit(attributes) do
     LinkVisit.changeset(%LinkVisit{}, attributes)
     |> Repo.insert!
-  end
-
-  defp broadcast_link_visit_creation(link_visit) do
-    RedirectTo.Endpoint.broadcast!(
-      "links",
-      "update:link",
-      %{
-        link_id: link_visit.link_id,
-        html: link_visit_html(link_visit)
-      }
-    )
-  end
-
-  defp link_visit_html(link_visit) do
-    Phoenix.View.render_to_string(
-      RedirectTo.LinkView,
-      "_list_item.html",
-      conn: RedirectTo.Endpoint,
-      link: link_from_link_visit(link_visit),
-      visit_count: link_visit_count(link_visit),
-    )
-  end
-
-  defp link_from_link_visit(link_visit) do
-    Repo.get!(Link, link_visit.link_id)
-  end
-
-  defp link_visit_count(link_visit) do
-    from(
-      lv in LinkVisit,
-      where: lv.link_id == ^link_visit.link_id,
-      select: count(lv.id)
-    ) |> Repo.one
   end
 end

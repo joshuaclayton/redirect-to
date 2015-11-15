@@ -6,4 +6,8 @@
   td, th {
     padding: .5em;
   }
+
+  tr.created {
+    animation: flash-highlight 1s;
+  }
 }
