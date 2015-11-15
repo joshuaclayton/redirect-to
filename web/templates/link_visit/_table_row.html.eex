@@ -1,0 +1,6 @@
+<tr>
+  <td><%= date_format @link_visit.inserted_at %></td>
+  <td><%= @link_visit.ip %></td>
+  <td><%= user_agent_info(@link_visit) %></td>
+  <td><%= referer_host @link_visit %></td>
+</tr>
