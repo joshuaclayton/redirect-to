@@ -4,7 +4,7 @@ defmodule RedirectTo.LinkVisitView do
   def date_format(value) do
     {:ok, date} = Ecto.DateTime.dump(value)
     Timex.Date.from(date)
-    |> Timex.DateFormat.format!("%B %e, %Y", :strftime)
+    |> Timex.DateFormat.format!("%B %e, %Y %l:%M %p", :strftime)
   end
 
   def user_agent_info(link_visit) do
