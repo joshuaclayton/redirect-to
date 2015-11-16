@@ -10,4 +10,3 @@ defmodule RedirectTo.Queries.LinksList do
       order_by: l.id
   end
 end
-
