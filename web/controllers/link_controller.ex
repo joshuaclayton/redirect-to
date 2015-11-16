@@ -21,7 +21,8 @@ defmodule RedirectTo.LinkController do
   end
 
   def show(conn, %{"id" => id}) do
-    link = Repo.get!(Link, id) |> Repo.preload([:link_visits])
+    link_visits_query = RedirectTo.Queries.NewLinkVisits.new
+    link = Repo.get!(Link, id) |> Repo.preload([link_visits: link_visits_query])
 
     new_link = Link.changeset
     render conn, "show.html", new_link: new_link, link: link, links: load_links
