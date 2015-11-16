@@ -24,7 +24,8 @@ config :logger, level: :info
 # Configure your database
 config :redirect_to, RedirectTo.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: System.get_env("DATABASE_URL")
+  url: System.get_env("DATABASE_URL"),
+  size: System.get_env("POOL_SIZE")
 
 # ## SSL Support
 #
