@@ -5,6 +5,7 @@ defmodule RedirectTo.Link do
   schema "links" do
     field :long_url, :string
     field :slug, :string
+    field :link_visits_count, :integer, default: 0
 
     has_many :link_visits, LinkVisit, on_delete: :fetch_and_delete
 

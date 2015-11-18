@@ -15,6 +15,15 @@ defmodule RedirectTo.LinkVisit do
     timestamps
   end
 
+  after_insert :increment_link_visit_count
+
+  def increment_link_visit_count(changeset = %{model: model}) do
+    from(l in RedirectTo.Link, where: l.id == ^model.link_id)
+    |> RedirectTo.Repo.update_all(inc: [link_visits_count: 1])
+
+    changeset
+  end
+
   @required_fields ~w(user_agent link_id browser_name os_name device_name)
   @optional_fields ~w(ip referer country_code)
 

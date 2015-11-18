@@ -11,7 +11,7 @@ defmodule RedirectTo.LinkVisitCreator do
     |> with_user_agent_attributes
     |> with_geocoded_attributes
     |> persist_link_visit
-    |> LinkVisitCreationBroadcaster.broadcast(link)
+    |> broadcast_link_visit_creation(link)
   end
 
   defp request_info(conn) do
@@ -33,5 +33,9 @@ defmodule RedirectTo.LinkVisitCreator do
   defp persist_link_visit(attributes) do
     LinkVisit.changeset(%LinkVisit{}, attributes)
     |> Repo.insert!
+  end
+
+  defp broadcast_link_visit_creation(link_visit, link) do
+    LinkVisitCreationBroadcaster.broadcast(link_visit, link)
   end
 end

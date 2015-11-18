@@ -11,6 +11,7 @@ defmodule RedirectTo do
       supervisor(RedirectTo.Endpoint, []),
       # Start the Ecto repository
       supervisor(RedirectTo.Repo, []),
+      worker(LinkCache, [[name: LinkCache]]),
       # Here you could define other workers and supervisors as children
       # worker(RedirectTo.Worker, [arg1, arg2, arg3]),
     ]

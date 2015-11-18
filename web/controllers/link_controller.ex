@@ -29,7 +29,7 @@ defmodule RedirectTo.LinkController do
   end
 
   defp load_links do
-    RedirectTo.Queries.LinksList.with_visits_count
+    from(l in Link, select: l, order_by: l.id)
     |> Repo.all
   end
 end

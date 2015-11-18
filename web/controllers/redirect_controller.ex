@@ -4,7 +4,9 @@ defmodule RedirectTo.RedirectController do
   alias RedirectTo.Queries
 
   def show(conn, %{"slug" => slug}) do
-    link = Queries.Link.by_slug(slug) |> Repo.one
+    link = LinkCache.fetch(slug, fn ->
+      Queries.Link.by_slug(slug) |> Repo.one
+    end)
 
     spawn_link(LinkVisitCreator, :create, [conn, link])
 

@@ -56,17 +56,26 @@ channel.join()
 
 channel.on("update:link", payload => {
   const linkId = payload.link_id,
-        linkListItemHtml = payload.link_list_item_html,
-        linkListItemSelector = `.links [data-id='${linkId}']`,
         linkVisitTableRowHtml = payload.link_visit_table_row_html,
-        linkVisitTableRowSelector = `.link-visits[data-id='${linkId}'] tbody`,
+        linkVisitTableRowSelector = `.link-visits[data-id='${linkId}'] tbody`;
+
+  $(linkVisitTableRowSelector).prepend($(linkVisitTableRowHtml).addClass("created"));
+});
+
+channel.on("update:linkCount", payload => {
+  const linkId = payload.link_id,
+        linkListItemHtml = payload.link_list_item_html,
+        linkListItemSelector = `.links [data-id='${linkId}']`;
+
+  $(linkListItemSelector).html(linkListItemHtml);
+});
+
+channel.on("update:linkAnalytics", payload => {
+  const linkId = payload.link_id,
         linkAnalyticsHtml = payload.link_analytics_html,
         linkAnalyticsSelector = `.analytics-wrapper[data-id='${linkId}']`;
 
-  $(linkListItemSelector).html(linkListItemHtml);
   $(linkAnalyticsSelector).replaceWith(linkAnalyticsHtml);
-  $(linkVisitTableRowSelector).prepend($(linkVisitTableRowHtml).addClass("created"));
-
   $("[data-role='analytics-graph']").each(function() {
     new PieChart($(this), google).run();
   });

@@ -66,9 +66,10 @@ defmodule RedirectTo.LinkAnalytics do
 
   defp calculate_total(link) do
     from(
-      lv in LinkVisit,
-      where: lv.link_id == ^link.id,
-      select: count(lv.id)
-    ) |> Repo.one
+      l in RedirectTo.Link,
+      select: l.link_visits_count,
+      where: l.id == ^link.id
+    )
+    |> Repo.one
   end
 end
