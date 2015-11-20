@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
   function selectText(element) {
     var range, selection;
@@ -19,9 +20,17 @@
     } catch(err) { }
   }
 
+  google.load("visualization", "1", {packages:["corechart"]});
+
   $(function() {
     $("[data-role='user-selectable']").on("click", function() {
       selectText(this);
+    });
+
+    google.setOnLoadCallback(function() {
+      $("[data-role='analytics-graph']").each(function() {
+        new PieChart($(this), google).run();
+      });
     });
   });
 </script>

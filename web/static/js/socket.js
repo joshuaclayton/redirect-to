@@ -59,10 +59,17 @@ channel.on("update:link", payload => {
         linkListItemHtml = payload.link_list_item_html,
         linkListItemSelector = `.links [data-id='${linkId}']`,
         linkVisitTableRowHtml = payload.link_visit_table_row_html,
-        linkVisitTableRowSelector = `.link-visits[data-id='${linkId}'] tbody`;
+        linkVisitTableRowSelector = `.link-visits[data-id='${linkId}'] tbody`,
+        linkAnalyticsHtml = payload.link_analytics_html,
+        linkAnalyticsSelector = `.analytics[data-id='${linkId}']`;
 
   $(linkListItemSelector).html(linkListItemHtml);
+  $(linkAnalyticsSelector).replaceWith(linkAnalyticsHtml);
   $(linkVisitTableRowSelector).prepend($(linkVisitTableRowHtml).addClass("created"));
+
+  $("[data-role='analytics-graph']").each(function() {
+    new PieChart($(this), google).run();
+  });
 });
 
 export default socket;

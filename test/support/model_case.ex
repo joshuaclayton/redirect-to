@@ -17,9 +17,11 @@ defmodule RedirectTo.ModelCase do
   using do
     quote do
       alias RedirectTo.Repo
+
       import Ecto.Model
       import Ecto.Query, only: [from: 2]
       import RedirectTo.ModelCase
+      import RedirectTo.Factory
     end
   end
 

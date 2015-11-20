@@ -1,3 +1,5 @@
+<h2><%= @link.long_url %></h2>
+
 <section class="shortened-url">
   <p><%= t(@conn, "link.shortened_url_description") %></p>
   <code data-role="user-selectable">
@@ -5,6 +7,5 @@
   </code>
 </section>
 
-<h2><%= @link.long_url %></h2>
-
+<%= render RedirectTo.LinkAnalyticsView, "show.html", conn: @conn, link: @link %>
 <%= render RedirectTo.LinkVisitView, "_table.html", conn: @conn, link: @link, link_visits: @link.link_visits %>

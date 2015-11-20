@@ -11,7 +11,14 @@ defmodule I18n do
     link: [
       created: "Successfully shortened '%{url}'",
       view: "View",
-      shortened_url_description: "Here's your shortened URL; click on the link and press Command+C to copy it to your clipboard."
+      shortened_url_description: "Here's your shortened URL; click on the link and press Command+C to copy it to your clipboard.",
+      analytics: [
+        device_breakdown: "Device Breakdown",
+        os_breakdown: "OS Breakdown",
+        browser_breakdown: "Browser Breakdown",
+        name: "Name",
+        count: "Count",
+      ]
     ],
     link_visits: [
       ip: "IP Address",

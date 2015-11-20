@@ -10,6 +10,7 @@ defmodule RedirectTo.LinkVisitCreationBroadcaster do
       %{
         link_id: link.id,
         link_list_item_html: link_list_item_html(link),
+        link_analytics_html: link_analytics_html(link),
         link_visit_table_row_html: link_visit_table_row_html(link_visit)
       }
     )
@@ -22,6 +23,15 @@ defmodule RedirectTo.LinkVisitCreationBroadcaster do
       conn: RedirectTo.Endpoint,
       link: link,
       visit_count: link_visit_count(link),
+    )
+  end
+
+  defp link_analytics_html(link) do
+    Phoenix.View.render_to_string(
+      RedirectTo.LinkAnalyticsView,
+      "show.html",
+      conn: RedirectTo.Endpoint,
+      link: link
     )
   end
 

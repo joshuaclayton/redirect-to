@@ -64,10 +64,14 @@ h1 {
   }
 }
 
-.link-visits {
+table {
   background: lighten($dark-grey, 80%);
 
   td, th {
     border: 1px solid lighten($dark-grey, 62%);
+  }
+
+  td.integer {
+    text-align: right;
   }
 }

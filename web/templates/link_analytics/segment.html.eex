@@ -1,0 +1,22 @@
+<section class="analytics-segment">
+  <h2><%= t(@conn, "link.analytics.#{@name}") %></h2>
+  <div data-role="analytics-graph">
+    <table>
+      <thead>
+        <tr>
+          <th><%= t(@conn, "link.analytics.name") %></th>
+          <th><%= t(@conn, "link.analytics.count") %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= Enum.map @analytics, fn(%{name: name, count: count, percentage: percentage}) -> %>
+          <tr>
+            <td data-role="name"><%= name %></td>
+            <td data-role="count"><%= count %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div data-role="output"></div>
+  </div>
+</section>

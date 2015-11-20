@@ -1,0 +1,13 @@
+<section class="analytics" data-id="<%= @link.id %>">
+  <%= render "segment.html", conn: @conn,
+    analytics: analytics_for(@link).browser_breakdown,
+    name: :browser_breakdown %>
+
+  <%= render "segment.html", conn: @conn,
+    analytics: analytics_for(@link).os_breakdown,
+    name: :os_breakdown %>
+
+  <%= render "segment.html", conn: @conn,
+    analytics: analytics_for(@link).device_breakdown,
+    name: :device_breakdown %>
+</section>

@@ -14,8 +14,17 @@
   overflow-y: auto;
 }
 
+table { width: 100%; }
+
 .link-detail {
   flex: 1;
   overflow-y: auto;
-  table { width: 100%; }
+}
+
+.analytics {
+  display: flex;
+
+  .analytics-segment {
+    flex: 1;
+  }
 }
