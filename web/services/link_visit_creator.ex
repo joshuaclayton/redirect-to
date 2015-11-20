@@ -11,7 +11,7 @@ defmodule RedirectTo.LinkVisitCreator do
     |> Map.merge(request_info(conn))
     |> with_user_agent_attributes
     |> persist_link_visit
-    |> LinkVisitCreationBroadcaster.broadcast
+    |> LinkVisitCreationBroadcaster.broadcast(link)
   end
 
   defp request_info(conn) do
