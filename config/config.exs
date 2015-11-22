@@ -31,3 +31,9 @@ config :phoenix, :generators,
 config :hound, driver: "phantomjs"
 config :ua_inspector,
   database_path: Path.join(Path.expand("priv/repo"), "ua_inspector")
+
+  config :geolix,
+  databases: [
+    { :city,    Path.join(Path.expand("priv/repo/geoip"), "GeoLite2-City.mmdb.gz")    },
+    { :country, Path.join(Path.expand("priv/repo/geoip"), "GeoLite2-Country.mmdb.gz") }
+  ]

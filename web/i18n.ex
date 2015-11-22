@@ -17,6 +17,7 @@ defmodule I18n do
         device_breakdown: "Device Breakdown",
         os_breakdown: "OS Breakdown",
         browser_breakdown: "Browser Breakdown",
+        country_breakdown: "Country Breakdown",
         name: "Name",
         count: "Count",
       ]

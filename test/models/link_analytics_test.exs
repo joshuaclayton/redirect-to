@@ -31,6 +31,16 @@ defmodule RedirectTo.LinkAnalyticsTest do
     ]
   end
 
+  test "generates country_breakdown aggregates based on a link's visits" do
+    analytics = build_analytics(:country_code, [["US", 6], ["MX", 4], ["GB", 10]])
+
+    assert analytics.country_breakdown == [
+      %{ name: "GB", count: 10, percentage: 50.0 },
+      %{ name: "US", count: 6, percentage: 30.0 },
+      %{ name: "MX", count: 4, percentage: 20.0 },
+    ]
+  end
+
   defp build_analytics(attribute, list) do
     link = create(:link)
 

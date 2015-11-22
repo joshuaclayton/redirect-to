@@ -61,7 +61,7 @@ channel.on("update:link", payload => {
         linkVisitTableRowHtml = payload.link_visit_table_row_html,
         linkVisitTableRowSelector = `.link-visits[data-id='${linkId}'] tbody`,
         linkAnalyticsHtml = payload.link_analytics_html,
-        linkAnalyticsSelector = `.analytics[data-id='${linkId}']`;
+        linkAnalyticsSelector = `.analytics-wrapper[data-id='${linkId}']`;
 
   $(linkListItemSelector).html(linkListItemHtml);
   $(linkAnalyticsSelector).replaceWith(linkAnalyticsHtml);
@@ -69,6 +69,10 @@ channel.on("update:link", payload => {
 
   $("[data-role='analytics-graph']").each(function() {
     new PieChart($(this), google).run();
+  });
+
+  $("[data-role='analytics-geo']").each(function() {
+    new GeoChart($(this), google).run();
   });
 });
 

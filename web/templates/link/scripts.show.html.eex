@@ -20,7 +20,7 @@
     } catch(err) { }
   }
 
-  google.load("visualization", "1", {packages:["corechart"]});
+  google.load("visualization", "1", {packages:["corechart", "geochart"]});
 
   $(function() {
     $("[data-role='user-selectable']").on("click", function() {
@@ -30,6 +30,10 @@
     google.setOnLoadCallback(function() {
       $("[data-role='analytics-graph']").each(function() {
         new PieChart($(this), google).run();
+      });
+
+      $("[data-role='analytics-geo']").each(function() {
+        new GeoChart($(this), google).run();
       });
     });
   });

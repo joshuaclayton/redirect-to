@@ -1,6 +1,6 @@
 <section class="analytics-segment">
   <h2><%= t(@conn, "link.analytics.#{@name}") %></h2>
-  <div data-role="analytics-graph">
+  <div data-role="analytics-<%= @chart %>">
     <table>
       <thead>
         <tr>

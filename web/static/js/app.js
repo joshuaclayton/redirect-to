@@ -20,5 +20,7 @@ import "deps/phoenix_html/web/static/js/phoenix_html"
 
 import socket from "./socket"
 import PieChart from "./pie-chart"
+import GeoChart from "./geo-chart"
 
 window.PieChart = PieChart;
+window.GeoChart = GeoChart;

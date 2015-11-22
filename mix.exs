@@ -21,7 +21,7 @@ defmodule RedirectTo.Mixfile do
   end
 
   def app_list do
-    [:phoenix, :phoenix_html, :cowboy, :logger, :phoenix_ecto, :postgrex, :tzdata, :ua_inspector]
+    [:phoenix, :phoenix_html, :cowboy, :logger, :phoenix_ecto, :postgrex, :tzdata, :ua_inspector, :geolix]
   end
 
   def app_list(:test), do: [:hound | app_list]
@@ -47,6 +47,7 @@ defmodule RedirectTo.Mixfile do
       {:timex, "~> 0.19.2"},
       {:ua_inspector, github: "joshuaclayton/ua_inspector", branch: "update-module-name"},
       {:ex_machina, "~> 0.5"},
+      {:geolix, "~> 0.9"},
       {:yamerl, github: "yakaz/yamerl"}
     ]
   end
