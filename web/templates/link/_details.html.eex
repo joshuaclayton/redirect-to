@@ -1,4 +1,7 @@
-<h2><%= @link.long_url %></h2>
+<header class="link-details">
+  <h2><%= @link.long_url %></h2>
+  <h3><%= link_creation @conn, @link %></h3>
+</header>
 
 <section class="shortened-url">
   <p><%= t(@conn, "link.shortened_url_description") %></p>

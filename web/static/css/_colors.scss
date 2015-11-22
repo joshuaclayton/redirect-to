@@ -75,3 +75,9 @@ table {
     text-align: right;
   }
 }
+
+.link-details {
+  h3 {
+    color: lighten($dark-grey, 40%);
+  }
+}

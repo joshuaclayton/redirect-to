@@ -10,6 +10,7 @@ defmodule I18n do
     ],
     link: [
       created: "Successfully shortened '%{url}'",
+      creation: "Created at %{timestamp}",
       view: "View",
       shortened_url_description: "Here's your shortened URL; click on the link and press Command+C to copy it to your clipboard.",
       analytics: [

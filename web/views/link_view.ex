@@ -6,4 +6,8 @@ defmodule RedirectTo.LinkView do
       "class=active"
     end
   end
+
+  def link_creation(conn, link) do
+    t(conn, "link.creation", timestamp: RedirectTo.LinkVisitView.date_format(link.inserted_at))
+  end
 end
