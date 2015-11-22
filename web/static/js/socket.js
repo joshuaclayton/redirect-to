@@ -54,7 +54,9 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) });
 
-channel.on("update:link", payload => {
+import debounce from "./debounce"
+
+channel.on("update:link", debounce(payload => {
   const linkId = payload.link_id,
         linkListItemHtml = payload.link_list_item_html,
         linkListItemSelector = `.links [data-id='${linkId}']`,
@@ -74,6 +76,6 @@ channel.on("update:link", payload => {
   $("[data-role='analytics-geo']").each(function() {
     new GeoChart($(this), google).run();
   });
-});
+}, 1000));
 
 export default socket;
