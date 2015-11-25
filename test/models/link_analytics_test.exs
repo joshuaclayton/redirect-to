@@ -41,6 +41,12 @@ defmodule RedirectTo.LinkAnalyticsTest do
     ]
   end
 
+  test "generates total count based on a link's visits" do
+    analytics = build_analytics(:country_code, [["US", 6], ["MX", 4], ["GB", 10]])
+
+    assert analytics.total == 20
+  end
+
   defp build_analytics(attribute, list) do
     link = create(:link)
 

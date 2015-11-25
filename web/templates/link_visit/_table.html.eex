@@ -8,8 +8,12 @@
     </tr>
   </thead>
   <tbody>
-    <%= Enum.map @link_visits, fn(link_visit) -> %>
-      <%= render "_table_row.html", link_visit: link_visit %>
+    <%= if Enum.any? @link_visits do %>
+      <%= Enum.map @link_visits, fn(link_visit) -> %>
+        <%= render "_table_row.html", link_visit: link_visit %>
+      <% end %>
+    <% else %>
+      <%= render "_empty_table_row.html", conn: @conn %>
     <% end %>
   </tbody>
 </table>

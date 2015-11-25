@@ -1,25 +1,27 @@
 <section class="analytics-wrapper" data-id="<%= @link.id %>">
-  <section class="analytics">
-    <%= render "segment.html", conn: @conn,
-      analytics: analytics_for(@link).browser_breakdown,
-      chart: :graph,
-      name: :browser_breakdown %>
+  <%= if analytics_for(@link).total > 0 do %>
+    <section class="analytics">
+      <%= render "segment.html", conn: @conn,
+        analytics: analytics_for(@link).browser_breakdown,
+        chart: :graph,
+        name: :browser_breakdown %>
 
-    <%= render "segment.html", conn: @conn,
-      analytics: analytics_for(@link).os_breakdown,
-      chart: :graph,
-      name: :os_breakdown %>
+      <%= render "segment.html", conn: @conn,
+        analytics: analytics_for(@link).os_breakdown,
+        chart: :graph,
+        name: :os_breakdown %>
 
-    <%= render "segment.html", conn: @conn,
-      analytics: analytics_for(@link).device_breakdown,
-      chart: :graph,
-      name: :device_breakdown %>
-  </section>
+      <%= render "segment.html", conn: @conn,
+        analytics: analytics_for(@link).device_breakdown,
+        chart: :graph,
+        name: :device_breakdown %>
+    </section>
 
-  <section class="analytics">
-    <%= render "segment.html", conn: @conn,
-      analytics: analytics_for(@link).country_breakdown,
-      chart: :geo,
-      name: :country_breakdown %>
-  </section>
+    <section class="analytics">
+      <%= render "segment.html", conn: @conn,
+        analytics: analytics_for(@link).country_breakdown,
+        chart: :geo,
+        name: :country_breakdown %>
+    </section>
+  <% end %>
 </section>

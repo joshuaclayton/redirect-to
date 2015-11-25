@@ -26,7 +26,10 @@ defmodule I18n do
       ip: "IP Address",
       user_agent: "User Agent",
       referer: "Referer",
-      occurred_on: "Occurred"
+      occurred_on: "Occurred",
+      table: [
+        empty: "No one has visited this shortened URL yet; why not share it?"
+      ]
     ],
     forms: [
       link: [

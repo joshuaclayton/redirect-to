@@ -1,0 +1,3 @@
+<tr class="empty">
+  <td colspan="4"><%= t(@conn, "link_visits.table.empty") %></td>
+</tr>

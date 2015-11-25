@@ -3,7 +3,7 @@ defmodule RedirectTo.LinkAnalytics do
   alias RedirectTo.LinkVisit
   alias RedirectTo.Repo
 
-  defstruct device_breakdown: [], os_breakdown: [], browser_breakdown: [], country_breakdown: []
+  defstruct device_breakdown: [], os_breakdown: [], browser_breakdown: [], country_breakdown: [], total: 0
 
   def generate(link) do
     total = calculate_total(link)
@@ -13,6 +13,7 @@ defmodule RedirectTo.LinkAnalytics do
     |> Map.merge(%{os_breakdown: calculate_oses(link, total)})
     |> Map.merge(%{browser_breakdown: calculate_browsers(link, total)})
     |> Map.merge(%{country_breakdown: calculate_countries(link, total)})
+    |> Map.merge(%{total: total})
   end
 
   defp calculate_devices(link, total) do

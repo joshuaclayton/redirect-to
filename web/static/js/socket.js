@@ -57,6 +57,7 @@ channel.join()
 import debounce from "./debounce"
 
 channel.on("update:link", debounce(payload => {
+  console.log("hi!");
   const linkId = payload.link_id,
         linkListItemHtml = payload.link_list_item_html,
         linkListItemSelector = `.links [data-id='${linkId}']`,
