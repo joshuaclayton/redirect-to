@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        <%= Enum.map @analytics, fn(%{name: name, count: count, percentage: percentage}) -> %>
+        <%= Enum.map @analytics, fn(%{name: name, count: count}) -> %>
           <tr>
             <td data-role="name"><%= name %></td>
             <td data-role="count"><%= count %></td>
