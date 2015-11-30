@@ -10,7 +10,7 @@ defmodule RedirectTo do
       # Start the endpoint when the application starts
       supervisor(RedirectTo.Endpoint, []),
       # Start the Ecto repository
-      worker(RedirectTo.Repo, []),
+      supervisor(RedirectTo.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(RedirectTo.Worker, [arg1, arg2, arg3]),
     ]
