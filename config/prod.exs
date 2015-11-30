@@ -63,6 +63,3 @@ config :redirect_to, RedirectTo.Repo,
 #
 #     config :redirect_to, RedirectTo.Endpoint, server: true
 #
-
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
