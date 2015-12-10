@@ -21,10 +21,9 @@ defmodule RedirectTo.HomepagePage do
 
   def follow_shortened_link_to(url) do
     view_link_details(url)
-    shortened_url = find_element(:css, ".link-detail code")
-                    |> visible_text
-
-    navigate_to shortened_url
+    find_element(:css, ".link-detail code")
+    |> visible_text
+    |> navigate_to
   end
 
   def flash_is_present?(type, message) do
