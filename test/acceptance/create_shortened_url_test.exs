@@ -1,9 +1,7 @@
 defmodule RedirectTo.CreateShortenedUrlTest do
-  use RedirectTo.ConnCase
+  use RedirectTo.FeatureCase
 
   import RedirectTo.HomepagePage
-  use Hound.Helpers
-  hound_session
 
   test "create a shortened URL" do
     visit_homepage
