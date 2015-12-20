@@ -9,9 +9,8 @@ defmodule RedirectTo.LinkVisitUserAgentRecalculator do
   end
 
   defp update_link_visit(link_visit) do
-    changeset = link_visit
-                |> Changeset.change user_agent_to_map(link_visit.user_agent)
-
-    Repo.update(changeset)
+    link_visit
+    |> Changeset.change(user_agent_to_map(link_visit.user_agent))
+    |> Repo.update
   end
 end
