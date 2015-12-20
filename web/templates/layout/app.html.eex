@@ -19,7 +19,7 @@
         <h1><%= raw split_to_spans(t(@conn, "application.title")) %></h1>
       </header>
 
-      <%= @inner %>
+      <%= render @view_module, @view_template, assigns %>
     </div>
 
     <%= scripts(@conn, assigns) %>

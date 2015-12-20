@@ -7,13 +7,13 @@ defmodule RedirectTo.Link do
     field :slug, :string
     field :link_visits_count, :integer, default: 0
 
-    has_many :link_visits, LinkVisit, on_delete: :fetch_and_delete
+    has_many :link_visits, LinkVisit, on_delete: :delete_all
 
     timestamps
   end
 
   @required_fields ~w(long_url)
-  @optional_fields ~w()
+  @optional_fields ~w(slug)
 
   def changeset(model \\ %__MODULE__{}, params \\ :empty) do
     model

@@ -1,6 +1,7 @@
 defmodule RedirectTo.LinkVisitCreator do
   alias RedirectTo.Repo
   alias RedirectTo.LinkVisit
+  alias RedirectTo.LinkVisitPersister
   alias RedirectTo.LinkVisitCreationBroadcaster
   import RedirectTo.UserAgent, only: [user_agent_to_map: 1]
   import RedirectTo.Geocoder, only: [geocode_country: 1]
@@ -31,8 +32,7 @@ defmodule RedirectTo.LinkVisitCreator do
   end
 
   defp persist_link_visit(attributes) do
-    LinkVisit.changeset(%LinkVisit{}, attributes)
-    |> Repo.insert!
+    LinkVisitPersister.persist(attributes)
   end
 
   defp broadcast_link_visit_creation(link_visit, link) do
