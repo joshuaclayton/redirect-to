@@ -1,13 +1,6 @@
 defmodule LinkCache do
   use GenServer
 
-  def start_link(opts \\ []) do
-    {:ok, _pid} = GenServer.start_link(__MODULE__, [
-      {:ets_table_name, :link_cache_table},
-      {:log_limit, 1000000}
-    ], opts)
-  end
-
   def fetch(slug, default_value_function) do
     case get(slug) do
       nil -> set(slug, default_value_function.())
@@ -24,6 +17,15 @@ defmodule LinkCache do
 
   def set(slug, value) do
     GenServer.call(__MODULE__, {:set, slug, value})
+  end
+
+  # GenServer
+
+  def start_link(opts \\ []) do
+    {:ok, _pid} = GenServer.start_link(__MODULE__, [
+      {:ets_table_name, :link_cache_table},
+      {:log_limit, 1000000}
+    ], opts)
   end
 
   def handle_call({:get, slug}, _from, state) do
