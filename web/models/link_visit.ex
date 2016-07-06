@@ -18,7 +18,7 @@ defmodule RedirectTo.LinkVisit do
   @required_fields ~w(user_agent link_id browser_name os_name device_name)
   @optional_fields ~w(ip referer country_code)
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
   end

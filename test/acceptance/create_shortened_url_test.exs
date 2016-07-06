@@ -30,6 +30,6 @@ defmodule RedirectTo.CreateShortenedUrlTest do
     shorten_url "bad"
 
     refute shortened_url_is_present?("bad")
-    assert error_message_shown("should be")
+    assert error_message_shown(~r/should be/)
   end
 end

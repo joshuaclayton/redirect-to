@@ -29,11 +29,11 @@ defmodule RedirectTo.UserAgentTest do
 
   defp safari_ipad_user_agent do
     "Mozilla/5.0 (iPad; CPU OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11B554a Safari/9537.53"
-    |> UaInspector.parse
+    |> UAInspector.parse
   end
 
   defp bogus_user_agent do
     "bogus"
-    |> UaInspector.parse
+    |> UAInspector.parse
   end
 end

@@ -3,13 +3,13 @@ defmodule RedirectTo.LinkVisitView do
 
   def date_format(value) do
     {:ok, date} = Ecto.DateTime.dump(value)
-    Timex.Date.from(date)
-    |> Timex.DateFormat.format!("%B %e, %Y %l:%M %p", :strftime)
+    {:ok, result} = Timex.DateTime.from(date) |> Timex.format("%B %e, %Y %l:%M %p", :strftime)
+    result
   end
 
   def user_agent_info(link_visit) do
     [link_visit.browser_name, link_visit.os_name, link_visit.device_name]
-    |> Enum.join "/"
+    |> Enum.join("/")
   end
 
   def referer_host(link_visit) do

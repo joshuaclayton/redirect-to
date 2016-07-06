@@ -1,6 +1,6 @@
 defmodule RedirectTo.HomepagePage do
   use Hound.Helpers
-  import Hound.Matchers.Text, only: [visible_on_page?: 1]
+  import Hound.Matchers, only: [visible_in_page?: 1]
 
   def visit_homepage do
     navigate_to "/"
@@ -38,7 +38,7 @@ defmodule RedirectTo.HomepagePage do
   end
 
   def error_message_shown(message) do
-    visible_on_page?(message)
+    visible_in_page?(message)
   end
 
   def visit_links do
@@ -58,9 +58,9 @@ defmodule RedirectTo.HomepagePage do
 
   defp link_on_page(url) do
     all_links
-    |> Enum.find fn(element) ->
+    |> Enum.find(fn(element) ->
       (element |> visible_text) =~ ~r/#{url}/
-    end
+    end)
   end
 
   defp flash_for_type(type) do

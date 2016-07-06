@@ -5,7 +5,7 @@ defmodule RedirectTo.LinkVisitUserAgentRecalculator do
 
   def recalculate(records) do
     records
-    |> Enum.each &update_link_visit/1
+    |> Enum.each(&update_link_visit/1)
   end
 
   defp update_link_visit(link_visit) do

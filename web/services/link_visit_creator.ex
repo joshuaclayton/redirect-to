@@ -1,8 +1,8 @@
 defmodule RedirectTo.LinkVisitCreator do
-  alias RedirectTo.Repo
-  alias RedirectTo.LinkVisit
   alias RedirectTo.LinkVisitPersister
   alias RedirectTo.LinkVisitCreationBroadcaster
+  import Plug.Conn, only: [get_req_header: 2]
+
   import RedirectTo.UserAgent, only: [user_agent_to_map: 1]
   import RedirectTo.Geocoder, only: [geocode_country: 1]
 
@@ -17,9 +17,9 @@ defmodule RedirectTo.LinkVisitCreator do
 
   defp request_info(conn) do
     %{
-      user_agent: conn.req_headers["user-agent"],
-      ip: conn.req_headers["x-forwarded-for"],
-      referer: conn.req_headers["referer"],
+      user_agent: get_req_header(conn, "user-agent") |> List.first,
+      ip: get_req_header(conn, "x-forwarded-for") |> List.first,
+      referer: get_req_header(conn, "referer") |> List.first,
     }
   end
 

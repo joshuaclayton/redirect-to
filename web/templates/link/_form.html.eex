@@ -3,7 +3,7 @@
     <section class="errors">
       <h2><%= t(@conn, "errors.header") %></h2>
       <ul>
-        <%= Enum.map f.errors, fn({attribute, message}) -> %>
+        <%= Enum.map f.errors, fn({attribute, {message, _}}) -> %>
           <li><%= humanize(attribute) %> <%= message %></li>
         <% end %>
       </ul>

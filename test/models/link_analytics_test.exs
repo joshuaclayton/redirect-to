@@ -48,14 +48,14 @@ defmodule RedirectTo.LinkAnalyticsTest do
   end
 
   defp build_analytics(attribute, list) do
-    link = create(:link)
+    link = insert(:link)
 
     Enum.each list, fn([value, count]) ->
-      attrs = %{link_id: link.id} |> Map.put attribute, value
+      attrs = %{link_id: link.id} |> Map.put(attribute, value)
       1..count
-      |> Enum.each fn(_) ->
+      |> Enum.each(fn(_) ->
         RedirectTo.LinkVisitPersister.persist(RedirectTo.Factory.build(:link_visit, attrs) |> Map.from_struct)
-      end
+      end)
     end
 
     LinkAnalytics.generate link

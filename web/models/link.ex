@@ -15,7 +15,7 @@ defmodule RedirectTo.Link do
   @required_fields ~w(long_url)
   @optional_fields ~w(slug)
 
-  def changeset(model \\ %__MODULE__{}, params \\ :empty) do
+  def changeset(model \\ %__MODULE__{}, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> validate_url(:long_url)

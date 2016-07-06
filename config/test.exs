@@ -15,3 +15,5 @@ config :redirect_to, RedirectTo.Repo,
   database: "redirect_to_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :hound, driver: "phantomjs"

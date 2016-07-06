@@ -1,6 +1,6 @@
 defmodule RedirectTo.UserAgent do
   def user_agent_to_map(user_agent) do
-    parsed_user_agent = UaInspector.parse(user_agent)
+    parsed_user_agent = UAInspector.parse(user_agent)
 
     %{
       browser_name: browser_name(parsed_user_agent),

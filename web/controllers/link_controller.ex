@@ -14,7 +14,7 @@ defmodule RedirectTo.LinkController do
     case LinkCreator.create(link_params) do
       {:ok, link} ->
         put_flash(conn, :info, I18n.t!("en", "link.created", url: link.long_url))
-        |> redirect to: link_path(conn, :index)
+        |> redirect(to: link_path(conn, :index))
       {:error, changeset} ->
         render conn, "index.html", links: load_links, new_link: changeset
     end

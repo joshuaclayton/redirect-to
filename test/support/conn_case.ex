@@ -32,10 +32,12 @@ defmodule RedirectTo.ConnCase do
   end
 
   setup tags do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(RedirectTo.Repo)
+
     unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(RedirectTo.Repo, [])
+      Ecto.Adapters.SQL.Sandbox.mode(RedirectTo.Repo, {:shared, self()})
     end
 
-    :ok
+    {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

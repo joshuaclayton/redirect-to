@@ -16,7 +16,7 @@ defmodule RedirectTo.LinkTest do
   end
 
   test "URL validation" do
-    {:long_url, message} = Link.changeset(%Link{}, %{long_url: "invalid"})
+    {:long_url, {message, []}} = Link.changeset(%Link{}, %{long_url: "invalid"})
                             |> error_by_attribute(:long_url)
     assert message == "should be a valid URL"
   end

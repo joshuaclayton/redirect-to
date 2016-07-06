@@ -58,10 +58,10 @@ defmodule RedirectTo.LinkAnalytics do
 
   defp include_percentage(list, total) do
     list
-    |> Enum.map fn(data = %{count: count}) ->
+    |> Enum.map(fn(data = %{count: count}) ->
       data
       |> Map.merge(%{percentage: ((count/total)*100) |> Float.round(1)})
-    end
+    end)
   end
 
   defp calculate_total(link) do

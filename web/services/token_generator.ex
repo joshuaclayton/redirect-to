@@ -3,7 +3,7 @@ defmodule RedirectTo.TokenGenerator do
 
   def list do
     @list
-    |> Enum.flat_map fn x -> x end
+    |> Enum.flat_map(fn(x) -> x end)
   end
 
   def generate(id) do
