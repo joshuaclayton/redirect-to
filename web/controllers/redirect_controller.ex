@@ -12,7 +12,10 @@ defmodule RedirectTo.RedirectController do
       _ -> Queries.Link.by_slug(slug) |> Repo.one
     end
 
-    spawn_link(LinkVisitCreator, :create, [conn, link])
+    case System.get_env("TRACK_VISIT_STATISTICS") do
+      "true" -> spawn_link(LinkVisitCreator, :create, [conn, link])
+      _ -> nil
+    end
 
     redirect conn, external: link.long_url
   end
