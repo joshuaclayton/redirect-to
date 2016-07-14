@@ -6,7 +6,7 @@ defmodule RedirectTo.RedirectController do
   def show(conn, %{"slug" => slug}) do
     link = case System.get_env("USE_LINK_CACHE") do
       "true" ->
-        LinkCache.fetch(slug, fn ->
+        LinkCache.Cache.fetch(slug, fn ->
           Queries.Link.by_slug(slug) |> Repo.one
         end)
       _ -> Queries.Link.by_slug(slug) |> Repo.one
