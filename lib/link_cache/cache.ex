@@ -1,7 +1,8 @@
 defmodule LinkCache.Cache do
+  use GenServer
+
   def start_link(_opts \\ []) do
-    :ets.new(__MODULE__, [:named_table, :duplicate_bag, :public, read_concurrency: true])
-    {:ok, self()}
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
   def fetch(slug, default_value_function) do
@@ -19,7 +20,12 @@ defmodule LinkCache.Cache do
   end
 
   defp set(slug, value) do
-    :ets.insert(__MODULE__, {slug, value})
+    :ok = GenServer.cast(__MODULE__, {:set, slug, value})
     value
+  end
+
+  def handle_cast({:set, slug, value}, state) do
+    true = :ets.insert(__MODULE__, {slug, value})
+    {:noreply, state}
   end
 end
